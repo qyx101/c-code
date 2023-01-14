@@ -12,7 +12,7 @@ int main()
 {
 	int arr[10] = { 9,8,7,6,5,4,3,2,1,0 }; // arr
 	int sz = sizeof(arr) / sizeof(arr[0]); // 数组元素个数
-	qsort(arr, sz, 4, cmp_int);
+	qsort(arr, sz, sizeof(arr[0]), cmp_int);
 	for (int i = 0; i < 10; i++)
 	{
 		printf("%d ", arr[i]);
