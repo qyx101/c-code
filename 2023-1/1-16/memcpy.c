@@ -1,4 +1,5 @@
-// 模拟 memcpy
+ /
+ // 模拟 memcpy
 
 #include <stdio.h>
 void* my_memcpy(void* des, void* src, size_t n)

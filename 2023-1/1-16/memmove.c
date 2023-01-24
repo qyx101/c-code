@@ -14,6 +14,7 @@ void* my_memcpy(void* des, void* src, size_t n)
 	}
 	return des;
 }
+
 void* my_memmove(void* des, void* src, size_t n)
 {
 	assert(des && src);
@@ -36,6 +37,7 @@ void* my_memmove(void* des, void* src, size_t n)
 	}
 	return res;
 }
+
 int main()
 {
 	int arr1[] = { 1,2,3,4,5,6,7,8,9,10 };
