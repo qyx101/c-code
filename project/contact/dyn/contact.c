@@ -1,10 +1,33 @@
 #include "name.h"
 
-// 初始化通讯录 实现
+// 销毁 通讯录实现
+void destroy_con(struct Contact* con)
+{
+	free(con->info);
+	con->info = NULL;
+	con->sz = 0;
+	con->max_capa = 0;
+
+}
+// 静态 初始化通讯录 实现
+//void init_contact(struct Contact* con)
+//{
+//	con->sz = 0;
+//	memset(con->info, 0, sizeof(con->info));
+//}
+
+// 动态 初始化
 void init_contact(struct Contact* con)
 {
 	con->sz = 0;
-	memset(con->info, 0, sizeof(con->info));
+	struct Contact* ptr = (struct Contact*)calloc(DEFAULT_SZ, sizeof(struct info_peo));
+	if (ptr == NULL)
+	{
+		perror("init_contact: calloc");
+		return;
+	}
+	con->info = ptr;
+	con->max_capa = DEFAULT_SZ;
 }
 
 // 查找
@@ -20,16 +43,16 @@ int find_by_name(struct Contact* con, char* name)
 	}
 }
 
-// 增加通讯录 实现
-void add_contact(struct Contact* con)
-{
-	if (con->sz == MAX)
-	{
-		printf("不可增加，通讯录已满\n");
-	}
-	else
-	{
-		printf("输入姓名: ");
+// 静态 增加通讯录 实现
+//void add_contact(struct Contact* con)
+//{
+//	if (con->sz == MAX)
+//	{
+//		printf("不可增加，通讯录已满\n");
+//	}
+//	else
+//	{
+		/*printf("输入姓名: ");
 		scanf("%s", con->info[con->sz].name);
 		printf("输入年龄: ");
 		scanf("%d", &con->info[con->sz].age);
@@ -39,9 +62,47 @@ void add_contact(struct Contact* con)
 		scanf("%s", con->info[con->sz].addr);
 		printf("输入电话: ");
 		scanf("%s", con->info[con->sz].tele);
-		con->sz++;
+		con->sz++;*/
+//	}
+//}
+void check_capa(struct Contact* con)
+{
+	if (con->sz == con->max_capa)
+	{
+		// 增容
+		struct Contact* ptr = (struct Contact*)realloc(con->info,(con->max_capa + 2) * sizeof(struct info_peo));
+		if (ptr == NULL)
+		{
+			perror("cheack_capa: realloc");
+			return;
+		}
+		con->info = ptr;
+		con->max_capa += 2;
+		printf("增容成功\n");
 	}
 }
+
+// 动态 增加通讯录 实现
+void add_contact(struct Contact* con)
+{
+	// 检查容量
+	check_capa(con);
+
+	//增加一个人
+	printf("输入姓名: ");
+	scanf("%s", con->info[con->sz].name);
+	printf("输入年龄: ");
+	scanf("%d", &con->info[con->sz].age);
+	printf("输入性别: ");
+	scanf("%s", con->info[con->sz].sex);
+	printf("输入地址: ");
+	scanf("%s", con->info[con->sz].addr);
+	printf("输入电话: ");
+	scanf("%s", con->info[con->sz].tele);
+	con->sz++;
+}
+
+
 
 // 显示通讯录 实现
 void show_contact(struct Contact* con)
@@ -103,7 +164,7 @@ void modi_contact(struct Contact* con)
 	printf("输入电话: ");
 	scanf("%s", con->info[ret].tele);
 
-	
+
 }
 
 // 以名字搜索 实现

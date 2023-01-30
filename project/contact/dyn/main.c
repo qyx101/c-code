@@ -40,6 +40,7 @@ int main()
 			sort_contact(&con);
 			break;
 		case 0:
+			destroy_con(&con);
 			printf("退出通讯录\n");
 			break;
 		default:
