@@ -36,11 +36,57 @@ void SLPushBack(SListNode** head,SLDataType x)
 	}
 }
 
-void SListPrint(SListNode* record)
+void SListPrint(SListNode* pc)
 {
-	while (record)
+	while (pc)
 	{
-		printf("%d ", record->x);
-		record = record->next;
+		printf("%d -> ", pc->x);
+		pc = pc->next;
 	}
+	printf("NULL");
+}
+
+void SLPushFront(SListNode** pc, SLDataType x)
+{
+	SListNode* newnode = BuySListNode(x);
+	newnode->next = *pc;
+	*pc = newnode;
+}
+
+void SLPopBack(SListNode** pc)
+{
+	// 处理无节点情况
+	assert(*pc);
+
+	// 处理删除一个节点的情况
+	if ((*pc)->next == NULL)
+	{
+		free(*pc);
+		*pc = NULL;
+	}
+	else
+	{
+		// 处理删除多个节点的情况
+		SListNode* tail = *pc;
+		SListNode* prev = tail;
+		while (tail->next)
+		{
+			prev = tail;
+			tail = tail->next;
+		}
+		prev->next = NULL;
+		free(tail);
+		tail = NULL;
+	}
+}
+
+void SLPopFront(SListNode** pc)
+{
+	// 处理无节点情况
+	assert(*pc);
+	// 处理删除单/多节点情况
+	SListNode* first = *pc;
+	*pc = first->next;
+	free(first);
+	first = NULL;
 }
