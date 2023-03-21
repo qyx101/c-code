@@ -165,3 +165,17 @@ void SLTErace(SLTNode** pphead, SLTNode* pos)
 		prev->next = next;
 	}
 }
+
+// 销毁
+void SLTDestroy(SLTNode** pphead)
+{
+	assert(pphead);
+	assert(*pphead);
+	struct SLTNode* cur = *phead;
+	while (cur)
+	{
+		struct SLTNode* next = cur->next;
+		free(cur);
+		cur = next;
+	}
+}

@@ -29,3 +29,6 @@ void SLTInsertFront(SLTNode** pphead, SLTNode* pos, SLTDataType data);
 void SLTInsertBack(SLTNode* pos, SLTDataType data);
 // pos位置删除
 void SLTErace(SLTNode** pphead, SLTNode* pos);
+// 销毁
+void SLTDestroy(SLTNode** pphead);
+
