@@ -12,9 +12,14 @@ typedef struct Heap
 }HP;
 
 void HPInit(HP* php);
+void HPDestroy(HP* php);
+
 void AdjustUp(HPDataType* dys, int child);
-void AjustDown(HPDataType* dys, int parent, int size);
+void AdjustDown(HPDataType* dys, int parent, int sz);
+void Swap(HPDataType* buf1, HPDataType* buf2);
+
 void HeapPush(HP* php, HPDataType data);
 void HeapPop(HP* php);
 HPDataType HPTop(HP* php);
-bool isEmpty(HP* php);
+bool IsHPEmpty(HP* php);
+int HPSize(HP* php);
