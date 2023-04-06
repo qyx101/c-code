@@ -29,7 +29,7 @@ void t2()
 		HeapPop(&heap);
 	}
 }
-void Up_heapsort(int* arr, int n)
+void Upheapsort(int* arr, int n)
 {
 	// 向上调整 - 用建堆排序 
 	int i = 0;
