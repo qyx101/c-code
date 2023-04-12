@@ -17,9 +17,9 @@ typedef struct Queue
 	int size;
 }Queue;
 
-// 初始化
+// 初始化队列
 void QueInit(Queue* pq);
-// 销毁
+// 销毁队列
 void QueDestroy(Queue* pq);
 // 入队
 void QuePush(Queue* pq, QueDataType x);
