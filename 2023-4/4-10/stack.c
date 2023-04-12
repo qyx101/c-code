@@ -19,6 +19,7 @@ void STDestroy(stack* ps)
 {
 	assert(ps);
 	free(ps->dys);
+	ps->dys = NULL;
 	ps->capacity = 0;
 	ps->top = 0;
 }
